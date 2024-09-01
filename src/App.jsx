@@ -1,38 +1,28 @@
 import Home from "./pages/Home";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import "./App.css";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Layout from "./components/Layout";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/home",
-        element: <Home />,
-      },
-      {
-        path: "/about",
-        element: <About />,
-        children: [
-          { path: "principal", element: <div>Hello i am principal</div> },
-          { path: "sajal", element: <div>Hello i am sajal</div> },
-        ],
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-    ],
-    element: <Layout />,
-  },
-]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path="home" element={<Home />} />
+      <Route path="about" element={<About />}>
+        <Route path="sajal" element={<>Hi i am sajal</>} />
+        <Route path="principal" element={<>Hi i am principal</>} />
+      </Route>
+      <Route path="contact" element={<Contact />} />
+    </Route>
+  )
+);
 
 function App() {
   return <RouterProvider router={router} />;
