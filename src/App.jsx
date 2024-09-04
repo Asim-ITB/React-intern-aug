@@ -9,6 +9,7 @@ import "./App.css";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Layout from "./components/Layout";
+import AboutDesc from "./pages/AboutDesc";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,8 +17,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="home" element={<Home />} />
       <Route path="about" element={<About />}>
-        <Route path="sajal" element={<>Hi i am sajal</>} />
-        <Route path="principal" element={<>Hi i am principal</>} />
+        <Route path=":id" element={<AboutDesc />} />
       </Route>
       <Route path="contact" element={<Contact />} />
     </Route>
